@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import SearchItem from "./SearchItem";
 
-const Search = () => {
+const Search = (props) => {
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const apiKey = "AIzaSyD_g_PmV4I7edpZjnpRj3qctGOmwX7YPyo";
-  const maxResults = 10;
+  const maxResults = 5;
 
   const getSearch = () => {
     const url = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
@@ -20,9 +20,7 @@ const Search = () => {
       .catch((error) => console.error("Error:", error));
   };
 
-  useEffect(() => {
-    console.log(searchResult);
-  }, [searchResult]);
+  useEffect(() => {}, [searchResult]);
 
   return (
     <div>
@@ -34,9 +32,17 @@ const Search = () => {
         }}
       ></input>
       <button onClick={getSearch}>Search</button>
-      <div>
+      <div className="searchDiv">
         {searchResult.map((item, index) => {
-          return <SearchItem key={index} search={item}></SearchItem>;
+          return (
+            <SearchItem
+              key={index}
+              search={item}
+              readList={props.readList}
+              setReadList={props.setReadList}
+              setSearchResult={setSearchResult}
+            ></SearchItem>
+          );
         })}
       </div>
     </div>
