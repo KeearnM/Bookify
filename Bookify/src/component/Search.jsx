@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import SearchItem from "./SearchItem";
 
 const Search = (props) => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
-  const apiKey = "AIzaSyD_g_PmV4I7edpZjnpRj3qctGOmwX7YPyo";
+  const apiKey = "AIzaSyDY-CD2irz5dzkeBSsAkXsW6dtAqouJ_2A";
   const maxResults = 5;
 
   const getSearch = () => {
@@ -16,6 +16,7 @@ const Search = (props) => {
         .then((response) => response.json())
         .then((data) => {
           setSearchResult(data.items);
+          console.log(searchResult);
         })
         .catch((error) => console.error("Error:", error));
     }
@@ -29,6 +30,7 @@ const Search = (props) => {
         placeholder="Enter Search Query Here"
         value={search}
         onChange={(e) => {
+          console.log(e.target.value);
           setSearch(e.target.value);
         }}
       ></input>

@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 
 const RecoList = () => {
   const [genreList, setGenreList] = useState(["fantasy", "science fiction"]);
-  const [recommended, setRecommended] = useState("");
+  const [recommended, setRecommended] = useState([]);
   const [randomPick, setRandomPick] = useState("");
   const [showPick, setShowPick] = useState("Peter Pan");
 
-  const apiKey = "AIzaSyD_g_PmV4I7edpZjnpRj3qctGOmwX7YPyo";
+  const apiKey = "AIzaSyDY-CD2irz5dzkeBSsAkXsW6dtAqouJ_2A";
   const maxResults = 5;
 
   const GenreURL = (Genre) => {
@@ -29,7 +29,6 @@ const RecoList = () => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setRecommended(data); //Might remove this since recommended is meant to be the list of recommended books
         setRandomPick(randomPicker(data));
         console.log(randomPick.volumeInfo.title);
       })
@@ -41,20 +40,39 @@ const RecoList = () => {
   };
 
   const cycleGenre = (genres, numberOfLoops) => {
-    let counter = numberOfLoops;
-    while (counter !== 0) {
-      const looped = array[counter % genres.length];
-      console.log(looped);
-      counter--;
+    let fetchPromises = [];
+
+    for (let i = 0; i < numberOfLoops; i++) {
+      const currentGenre = genres[i % genres.length];
+      const fetchPromise = fetch(GenreURL(currentGenre))
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          return randomPicker(data);
+        })
+        .catch((error) => console.log("error:", error));
+      fetchPromises.push(fetchPromise);
     }
+
+    Promise.all(fetchPromises)
+      .then((results) => {
+        const flattenedResults = results.flat();
+        setRecommended(flattenedResults);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
   };
 
+  //   useEffect(() => {
+  //     cycleGenre(genreList, 5);
+  //   }, []);
+
   useEffect(() => {
-    if (randomPick && randomPick.volumeInfo) {
-      console.log(randomPick.volumeInfo.title);
-      setShowPick(randomPick.volumeInfo.title);
-    }
-  }, [randomPick]);
+    console.log("Updated recommended state:", recommended);
+  }, [recommended]);
 
   return (
     <div>
@@ -65,8 +83,8 @@ const RecoList = () => {
           return <h4>{item}</h4>;
         })}
       </div>
-      <label>{showPick}</label>
-      <button onClick={testClick}>More</button>
+      {/* <label>{showPick}</label> */}
+      <button onClick={() => cycleGenre(genreList, 5)}>More</button>
     </div>
   );
 };
