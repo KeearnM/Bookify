@@ -4,7 +4,7 @@ import ReadItem from "./ReadItem";
 const ReadingList = (props) => {
   return (
     <div className="readingList">
-      <div>Reading List</div>
+      <h2>Reading List</h2>
       {props.readList.map((item, index) => {
         return (
           <ReadItem

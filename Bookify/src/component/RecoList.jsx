@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const RecoList = () => {
-  const genreList = ["fantasy", "science fiction"];
+  const [genreList, setGenreList] = useState(["fantasy", "science fiction"]);
   const [recommended, setRecommended] = useState("");
   const [randomPick, setRandomPick] = useState("");
   const [showPick, setShowPick] = useState("Peter Pan");
@@ -40,6 +40,15 @@ const RecoList = () => {
     searchByGenre(GenreURL("fantasy"));
   };
 
+  const cycleGenre = (genres, numberOfLoops) => {
+    let counter = numberOfLoops;
+    while (counter !== 0) {
+      const looped = array[counter % genres.length];
+      console.log(looped);
+      counter--;
+    }
+  };
+
   useEffect(() => {
     if (randomPick && randomPick.volumeInfo) {
       console.log(randomPick.volumeInfo.title);
@@ -49,9 +58,15 @@ const RecoList = () => {
 
   return (
     <div>
-      <div>Recommended</div>
-      <button onClick={testClick}>Test</button>
+      <h2>Recommended</h2>
+      <div className="recoGenre">
+        <h3>Genre selected for recommendation:</h3>
+        {genreList.map((item, index) => {
+          return <h4>{item}</h4>;
+        })}
+      </div>
       <label>{showPick}</label>
+      <button onClick={testClick}>More</button>
     </div>
   );
 };

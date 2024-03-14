@@ -11,6 +11,7 @@ const SearchItem = (props) => {
     searchStuff.title = title;
     searchStuff.author = author;
     props.setReadList([...props.readList, searchStuff]);
+    props.setSearchResult([]);
   };
 
   return (
