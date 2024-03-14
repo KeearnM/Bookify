@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import Search from "./component/Search";
 import ReadingList from "./component/ReadingList";
+import RecoList from "./component/RecoList";
 
 function App() {
   const [readList, setReadList] = useState([]);
@@ -17,6 +18,7 @@ function App() {
       {/* {readList.map((item, index) => {
         return <label>{item.title}</label>;
       })} */}
+      <RecoList></RecoList>
     </div>
   );
 }
