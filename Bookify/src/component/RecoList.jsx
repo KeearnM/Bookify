@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import RecoItem from "./RecoItem";
 
-const RecoList = () => {
+const RecoList = (props) => {
   const [genreList, setGenreList] = useState(["fantasy", "science fiction"]);
   const [recommended, setRecommended] = useState([]);
   const [randomPick, setRandomPick] = useState("");
-  const [showPick, setShowPick] = useState("Peter Pan");
 
   const apiKey = "AIzaSyDY-CD2irz5dzkeBSsAkXsW6dtAqouJ_2A";
   const maxResults = 5;
@@ -91,8 +90,11 @@ const RecoList = () => {
           return (
             <RecoItem
               key={index}
+              recoItem={item}
               title={item.volumeInfo.title}
               author={item.volumeInfo.authors}
+              setReadList={props.setReadList}
+              readList={props.readList}
             ></RecoItem>
           );
         })}

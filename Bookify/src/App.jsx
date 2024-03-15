@@ -14,7 +14,7 @@ function App() {
       {/* {readList.map((item, index) => {
         return <label>{item.title}</label>;
       })} */}
-      <RecoList></RecoList>
+      <RecoList setReadList={setReadList} readList={readList}></RecoList>
       {/* <label>{process.env.REACT_APP_API_KEY}</label> */}
     </div>
   );
