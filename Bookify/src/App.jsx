@@ -15,6 +15,7 @@ function App() {
         return <label>{item.title}</label>;
       })} */}
       <RecoList></RecoList>
+      {/* <label>{process.env.REACT_APP_API_KEY}</label> */}
     </div>
   );
 }

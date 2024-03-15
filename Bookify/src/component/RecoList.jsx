@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import RecoItem from "./RecoItem";
 
 const RecoList = () => {
   const [genreList, setGenreList] = useState(["fantasy", "science fiction"]);
@@ -41,6 +42,8 @@ const RecoList = () => {
 
   const cycleGenre = (genres, numberOfLoops) => {
     let fetchPromises = [];
+    //I need to store all my promises into a list because I am making multiple fetch request
+    //this ensure I can use promise.all to make sure all my promises are ran
 
     for (let i = 0; i < numberOfLoops; i++) {
       const currentGenre = genres[i % genres.length];
@@ -66,9 +69,9 @@ const RecoList = () => {
       .catch((error) => console.error("Error fetching data:", error));
   };
 
-  //   useEffect(() => {
-  //     cycleGenre(genreList, 5);
-  //   }, []);
+  useEffect(() => {
+    cycleGenre(genreList, 5);
+  }, []);
 
   useEffect(() => {
     console.log("Updated recommended state:", recommended);
@@ -83,7 +86,17 @@ const RecoList = () => {
           return <h4>{item}</h4>;
         })}
       </div>
-      {/* <label>{showPick}</label> */}
+      <div className="RecoList">
+        {recommended.map((item, index) => {
+          return (
+            <RecoItem
+              key={index}
+              title={item.volumeInfo.title}
+              author={item.volumeInfo.authors}
+            ></RecoItem>
+          );
+        })}
+      </div>
       <button onClick={() => cycleGenre(genreList, 5)}>More</button>
     </div>
   );
