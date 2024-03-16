@@ -10,7 +10,7 @@ const RecoList = (props) => {
   const maxResults = 5;
 
   const GenreURL = (Genre) => {
-    const apiKey = "AIzaSyD_g_PmV4I7edpZjnpRj3qctGOmwX7YPyo";
+    const apiKey = import.meta.env.VITE_API_KEY_GOOGLEBOOKS;
     let url = `https://www.googleapis.com/books/v1/volumes?q=subject:${encodeURIComponent(
       Genre
     )}&key=${apiKey}`;

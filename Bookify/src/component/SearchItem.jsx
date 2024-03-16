@@ -55,7 +55,7 @@ const SearchItem = (props) => {
       <div>{title}</div>
       by
       <div>{author}</div>
-      <button onClick={AddToReadList}>Add</button>
+      {/* <button onClick={AddToReadList}>Add</button> */}
       <button onClick={addToReadTable}>Add to Airtable</button>
     </div>
   );
