@@ -46,6 +46,8 @@ const SearchItem = (props) => {
           console.log(record.getId());
         });
         props.setSearchResult([]);
+        props.toggleRefetch();
+        console.log(props.refetchTrigger);
       }
     );
   };

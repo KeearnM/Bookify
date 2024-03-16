@@ -1,4 +1,5 @@
 import React from "react";
+import Airtable from "airtable";
 
 const RecoItem = (props) => {
   const title = props.recoItem.volumeInfo.title;
@@ -18,10 +19,40 @@ const RecoItem = (props) => {
     props.setReadList([...props.readList, recoStuff]);
   };
 
+  const addToReadTable = () => {
+    const base = new Airtable({
+      apiKey: import.meta.env.VITE_API_KEY_AIRTABLE,
+    }).base("appSwRUsjekOwOCZ6");
+    base("Table 1").create(
+      [
+        {
+          fields: {
+            Title: title,
+            Author: author.toString(),
+            Thumbnail: thumbnail,
+            SmallThumbnail: smallThumbnail,
+            Categories: categories.toString(),
+          },
+        },
+      ],
+      function (err, records) {
+        if (err) {
+          console.error(err);
+          props.toggleRefetch();
+          return;
+        }
+        records.forEach(function (record) {
+          console.log(record.getId());
+        });
+        props.toggleRefetch();
+      }
+    );
+  };
+
   return (
     <div>
       {title} written by {author}{" "}
-      <button onClick={() => AddToReadList()}>Add</button>
+      <button onClick={() => addToReadTable()}>Add</button>
     </div>
   );
 };

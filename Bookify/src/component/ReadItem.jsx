@@ -13,6 +13,7 @@ const ReadItem = (props) => {
         return;
       }
       console.log("Deleted", deletedRecords.length, "records");
+      props.toggleRefetch();
     });
   };
   return (

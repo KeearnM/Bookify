@@ -7,25 +7,24 @@ const ReadingList = (props) => {
     apiKey: import.meta.env.VITE_API_KEY_AIRTABLE,
   }).base("appSwRUsjekOwOCZ6");
 
-  const [records, setRecords] = useState([]);
-
   useEffect(() => {
     base("Table 1")
       .select()
       .eachPage((records, fetchNextPage) => {
-        setRecords(records);
+        props.setRecords(records);
         fetchNextPage();
       });
-  });
+  }, [props.refetchTrigger]);
 
   const test = () => {
-    console.log(records);
+    console.log(props.records);
   };
 
   return (
     <div className="readingList">
       <h2>Reading List</h2>
-      {props.readList.map((item, index) => {
+      <div className="Invis">{props.refetchTrigger ? "true" : "false"}</div>
+      {/* {props.readList.map((item, index) => {
         return (
           <ReadItem
             key={index}
@@ -33,14 +32,15 @@ const ReadingList = (props) => {
             author={item.author}
           ></ReadItem>
         );
-      })}
-      {records.map((record) => {
+      })} */}
+      {props.records.map((record) => {
         return (
           <ReadItem
             key={record.id}
             id={record.id}
             title={record.fields.Title}
             author={record.fields.Author}
+            toggleRefetch={props.toggleRefetch}
           ></ReadItem>
         );
       })}

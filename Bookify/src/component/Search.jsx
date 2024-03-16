@@ -44,6 +44,8 @@ const Search = (props) => {
               readList={props.readList}
               setReadList={props.setReadList}
               setSearchResult={setSearchResult}
+              toggleRefetch={props.toggleRefetch}
+              refetchTrigger={props.refetchTrigger}
             ></SearchItem>
           );
         })}

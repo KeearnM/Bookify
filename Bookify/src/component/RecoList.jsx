@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RecoItem from "./RecoItem";
+import GenreList from "./GenreList";
 
 const RecoList = (props) => {
   const [genreList, setGenreList] = useState(["fantasy", "science fiction"]);
@@ -79,12 +80,13 @@ const RecoList = (props) => {
   return (
     <div>
       <h2>Recommended</h2>
-      <div className="recoGenre">
-        <h3>Genre selected for recommendation:</h3>
+      <h3>Genre selected for recommendation:</h3>
+      {/* <div className="recoGenre">
         {genreList.map((item, index) => {
-          return <h4>{item}</h4>;
+          return <div className="recoGenreItem">{item}</div>;
         })}
-      </div>
+      </div> */}
+      <GenreList></GenreList>
       <div className="RecoList">
         {recommended.map((item, index) => {
           return (
@@ -95,6 +97,7 @@ const RecoList = (props) => {
               author={item.volumeInfo.authors}
               setReadList={props.setReadList}
               readList={props.readList}
+              toggleRefetch={props.toggleRefetch}
             ></RecoItem>
           );
         })}

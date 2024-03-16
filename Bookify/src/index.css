@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: black;
+  background-color: #fbf7f5;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -65,4 +65,21 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.recoGenre {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+
+.recoGenreItem {
+  background-color: black;
+  color: white;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.Invis {
+  display: none;
 }
