@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReadItem from "./ReadItem";
+import Airtable from "airtable";
 
 const ReadingList = (props) => {
+  const base = new Airtable({
+    apiKey: "test",
+  }).base("appSwRUsjekOwOCZ6");
+
+  const [records, setRecords] = useState([]);
+
+  useEffect(() => {
+    base("Table 1")
+      .select()
+      .eachPage((records, fetchNextPage) => {
+        setRecords(records);
+        fetchNextPage();
+      });
+  });
+
+  const test = () => {
+    console.log(records);
+  };
+
   return (
     <div className="readingList">
       <h2>Reading List</h2>
@@ -14,6 +34,16 @@ const ReadingList = (props) => {
           ></ReadItem>
         );
       })}
+      {records.map((record) => {
+        return (
+          <ReadItem
+            key={record.id}
+            title={record.fields.Title}
+            author={record.fields.Author}
+          ></ReadItem>
+        );
+      })}
+      <button onClick={test}>Test</button>
     </div>
   );
 };
