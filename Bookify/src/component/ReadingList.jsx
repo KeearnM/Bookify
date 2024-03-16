@@ -4,7 +4,7 @@ import Airtable from "airtable";
 
 const ReadingList = (props) => {
   const base = new Airtable({
-    apiKey: "test",
+    apiKey: import.meta.env.VITE_API_KEY_AIRTABLE,
   }).base("appSwRUsjekOwOCZ6");
 
   const [records, setRecords] = useState([]);
@@ -38,6 +38,7 @@ const ReadingList = (props) => {
         return (
           <ReadItem
             key={record.id}
+            id={record.id}
             title={record.fields.Title}
             author={record.fields.Author}
           ></ReadItem>

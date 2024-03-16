@@ -15,7 +15,7 @@ function App() {
         return <label>{item.title}</label>;
       })} */}
       <RecoList setReadList={setReadList} readList={readList}></RecoList>
-      {/* <label>{process.env.REACT_APP_API_KEY}</label> */}
+      {/* <label>{import.meta.env.VITE_API_KEY_AIRTABLE}</label> */}
     </div>
   );
 }

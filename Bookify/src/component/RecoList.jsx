@@ -6,7 +6,7 @@ const RecoList = (props) => {
   const [recommended, setRecommended] = useState([]);
   const [randomPick, setRandomPick] = useState("");
 
-  const apiKey = "AIzaSyDY-CD2irz5dzkeBSsAkXsW6dtAqouJ_2A";
+  const apiKey = import.meta.env.VITE_API_KEY_GOOGLEBOOKS;
   const maxResults = 5;
 
   const GenreURL = (Genre) => {

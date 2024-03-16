@@ -23,7 +23,7 @@ const SearchItem = (props) => {
 
   const addToReadTable = () => {
     const base = new Airtable({
-      apiKey: "test",
+      apiKey: import.meta.env.VITE_API_KEY_AIRTABLE,
     }).base("appSwRUsjekOwOCZ6");
     base("Table 1").create(
       [
@@ -45,6 +45,7 @@ const SearchItem = (props) => {
         records.forEach(function (record) {
           console.log(record.getId());
         });
+        props.setSearchResult([]);
       }
     );
   };

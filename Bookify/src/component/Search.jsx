@@ -4,7 +4,7 @@ import SearchItem from "./SearchItem";
 const Search = (props) => {
   const [search, setSearch] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
-  const apiKey = "AIzaSyDY-CD2irz5dzkeBSsAkXsW6dtAqouJ_2A";
+  const apiKey = import.meta.env.VITE_API_KEY_GOOGLEBOOKS;
   const maxResults = 5;
 
   const getSearch = () => {
