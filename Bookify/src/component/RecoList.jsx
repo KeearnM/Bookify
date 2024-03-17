@@ -106,7 +106,12 @@ const RecoList = (props) => {
     <div>
       <h2>Recommended</h2>
       <h3>Genre selected for recommendation:</h3>
-      <GenreList genres={genres} setGenres={setGenres}></GenreList>
+      <GenreList
+        genres={genres}
+        setGenres={setGenres}
+        toggleRefetch={props.toggleRefetch}
+        refetchTrigger={props.refetchTrigger}
+      ></GenreList>
       <div className="RecoList">
         {recommended.map((item, index) => {
           return (

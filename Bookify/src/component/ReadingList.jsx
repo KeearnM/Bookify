@@ -21,10 +21,11 @@ const ReadingList = (props) => {
   };
 
   return (
-    <div className="readingList">
+    <div className="readDiv">
       <h2>Reading List</h2>
-      <div className="Invis">{props.refetchTrigger ? "true" : "false"}</div>
-      {/* {props.readList.map((item, index) => {
+      <div className="readingList">
+        <div className="Invis">{props.refetchTrigger ? "true" : "false"}</div>
+        {/* {props.readList.map((item, index) => {
         return (
           <ReadItem
             key={index}
@@ -33,18 +34,20 @@ const ReadingList = (props) => {
           ></ReadItem>
         );
       })} */}
-      {props.records.map((record) => {
-        return (
-          <ReadItem
-            key={record.id}
-            id={record.id}
-            title={record.fields.Title}
-            author={record.fields.Author}
-            toggleRefetch={props.toggleRefetch}
-          ></ReadItem>
-        );
-      })}
-      <button onClick={test}>Test</button>
+        {props.records.slice(0, 5).map((record) => {
+          return (
+            <ReadItem
+              key={record.id}
+              id={record.id}
+              title={record.fields.Title}
+              author={record.fields.Author}
+              thumbnail={record.fields.Thumbnail}
+              toggleRefetch={props.toggleRefetch}
+            ></ReadItem>
+          );
+        })}
+        {/* <button onClick={test}>Test</button> */}
+      </div>
     </div>
   );
 };

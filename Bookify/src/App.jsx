@@ -20,7 +20,13 @@ function App() {
 
   return (
     <div>
-      <h1>Bookify</h1>
+      <a className="logoImage" href="https://ibb.co/LzDySWm">
+        <img
+          src="https://i.ibb.co/tMw6Btg/Screenshot-2024-03-17-at-22-13-19.png"
+          alt="Screenshot-2024-03-17-at-22-13-19"
+          border="0"
+        />
+      </a>
       <Search
         readList={readList}
         setReadList={setReadList}
@@ -34,16 +40,12 @@ function App() {
         refetchTrigger={refetchTrigger}
         toggleRefetch={toggleRefetch}
       ></ReadingList>
-      {/* {readList.map((item, index) => {
-        return <label>{item.title}</label>;
-      })} */}
       <RecoList
         setReadList={setReadList}
         readList={readList}
         refetchTrigger={refetchTrigger}
         toggleRefetch={toggleRefetch}
       ></RecoList>
-      {/* <label>{import.meta.env.VITE_API_KEY_AIRTABLE}</label> */}
     </div>
   );
 }

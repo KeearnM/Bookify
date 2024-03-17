@@ -51,9 +51,16 @@ const RecoItem = (props) => {
   };
 
   return (
-    <div>
-      {title} written by {author}{" "}
-      <button onClick={() => addToReadTable()}>Add</button>
+    <div className="recoItem">
+      <div className="recoImage">
+        <img src={thumbnail}></img>
+      </div>
+      <div className="recoText">
+        {title} written by {author}
+      </div>
+      <div className="recoButtonDiv">
+        <button onClick={() => addToReadTable()}>Add</button>
+      </div>
     </div>
   );
 };

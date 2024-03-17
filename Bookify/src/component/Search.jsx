@@ -22,11 +22,16 @@ const Search = (props) => {
     }
   };
 
+  const closeSearch = () => {
+    setSearchResult([]);
+  };
+
   useEffect(() => {}, [searchResult]);
 
   return (
     <div>
       <input
+        className="searchInput"
         placeholder="Enter Search Query Here"
         value={search}
         onChange={(e) => {
@@ -35,6 +40,7 @@ const Search = (props) => {
         }}
       ></input>
       <button onClick={getSearch}>Search</button>
+      <button onClick={closeSearch}>Close Search</button>
       <div className="searchDiv">
         {searchResult.map((item, index) => {
           return (

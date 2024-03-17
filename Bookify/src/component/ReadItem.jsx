@@ -17,9 +17,16 @@ const ReadItem = (props) => {
     });
   };
   return (
-    <div id={props.id}>
-      {props.title} written by {props.author}
-      <button onClick={removeItem}>Remove</button>
+    <div id={props.id} className="readItem">
+      <div className="readImage">
+        <img src={props.thumbnail}></img>
+      </div>
+      <div className="readText">
+        {props.title} written by {props.author}
+      </div>
+      <div className="readButtonDiv">
+        <button onClick={removeItem}>Remove</button>
+      </div>
     </div>
   );
 };

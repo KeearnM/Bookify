@@ -4,7 +4,7 @@ const GenreItem = (props) => {
   return (
     <div className="recoGenreItem">
       {props.genre}
-      <button>-</button>
+      <button className="genreRemoveButton">-</button>
     </div>
   );
 };

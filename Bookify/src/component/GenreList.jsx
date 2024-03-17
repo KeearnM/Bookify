@@ -22,6 +22,33 @@ const GenreList = (props) => {
     apiKey: import.meta.env.VITE_API_KEY_AIRTABLE,
   }).base("appSwRUsjekOwOCZ6");
 
+  const addToReadTable = () => {
+    const base = new Airtable({
+      apiKey: import.meta.env.VITE_API_KEY_AIRTABLE,
+    }).base("appSwRUsjekOwOCZ6");
+    base("Genre").create(
+      [
+        {
+          fields: {
+            Genre: selectGenre,
+          },
+        },
+      ],
+      function (err, records) {
+        if (err) {
+          console.error(err);
+          props.toggleRefetch();
+          return;
+        }
+        props.toggleRefetch();
+        records.forEach(function (record) {
+          console.log(record.getId());
+        });
+        props.setSearchResult([]);
+      }
+    );
+  };
+
   useEffect(() => {
     base("Genre")
       .select()
@@ -29,7 +56,7 @@ const GenreList = (props) => {
         props.setGenres(records);
         fetchNextPage();
       });
-  }, []); // Empty dependency array
+  }, [props.refetchTrigger]); // Empty dependency array
 
   return (
     <div className="recoGenre">
@@ -44,10 +71,12 @@ const GenreList = (props) => {
         </GenreItem>
       ))}
       <div>
+        <div className="Invis">{props.refetchTrigger ? "true" : "false"}</div>
         <select
           value={selectGenre}
           onChange={(e) => {
             setSelectGenre(e.target.value);
+            console.log(selectGenre);
           }}
         >
           {genreSelection.map((item, index) => {
@@ -58,7 +87,7 @@ const GenreList = (props) => {
             );
           })}
         </select>
-        <button>Add</button>
+        <button onClick={addToReadTable}>Add</button>
       </div>
     </div>
   );
