@@ -20,19 +20,22 @@ function App() {
 
   return (
     <div>
-      <a className="logoImage" href="https://ibb.co/LzDySWm">
-        <img
-          src="https://i.ibb.co/tMw6Btg/Screenshot-2024-03-17-at-22-13-19.png"
-          alt="Screenshot-2024-03-17-at-22-13-19"
-          border="0"
-        />
-      </a>
-      <Search
-        readList={readList}
-        setReadList={setReadList}
-        refetchTrigger={refetchTrigger}
-        toggleRefetch={toggleRefetch}
-      ></Search>
+      <div className="topPart">
+        <Link to="/" className="logoImage">
+          <img
+            src="https://i.ibb.co/tMw6Btg/Screenshot-2024-03-17-at-22-13-19.png"
+            alt="Logo"
+            border="0"
+          />
+        </Link>
+
+        <Search
+          readList={readList}
+          setReadList={setReadList}
+          refetchTrigger={refetchTrigger}
+          toggleRefetch={toggleRefetch}
+        ></Search>
+      </div>
       <ReadingList
         readList={readList}
         records={records}
