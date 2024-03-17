@@ -3,6 +3,7 @@ import "./App.css";
 import Search from "./component/Search";
 import ReadingList from "./component/ReadingList";
 import RecoList from "./component/RecoList";
+import { Route, Link } from "react-router-dom";
 
 function App() {
   const [readList, setReadList] = useState([]);
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <div>
+      <h1>Bookify</h1>
       <Search
         readList={readList}
         setReadList={setReadList}

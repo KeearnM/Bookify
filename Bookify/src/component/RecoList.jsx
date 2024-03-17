@@ -3,20 +3,12 @@ import RecoItem from "./RecoItem";
 import GenreList from "./GenreList";
 
 const RecoList = (props) => {
-  const [genreList, setGenreList] = useState(["fantasy", "science fiction"]);
+  const [genres, setGenres] = useState([]);
   const [recommended, setRecommended] = useState([]);
   const [randomPick, setRandomPick] = useState("");
 
   const apiKey = import.meta.env.VITE_API_KEY_GOOGLEBOOKS;
   const maxResults = 5;
-
-  const GenreURL = (Genre) => {
-    const apiKey = import.meta.env.VITE_API_KEY_GOOGLEBOOKS;
-    let url = `https://www.googleapis.com/books/v1/volumes?q=subject:${encodeURIComponent(
-      Genre
-    )}&key=${apiKey}`;
-    return url;
-  };
 
   const randomPicker = (books) => {
     const bookItem = books.items;
@@ -40,22 +32,63 @@ const RecoList = (props) => {
     searchByGenre(GenreURL("fantasy"));
   };
 
-  const cycleGenre = (genres, numberOfLoops) => {
+  useEffect(() => {
+    if (genres.length > 0) {
+      cycleGenre(genres, 5);
+    }
+  }, [genres]); // Depend on genres state
+
+  const fetchGenreData = async (genre) => {
+    const apiKey = import.meta.env.VITE_API_KEY_GOOGLEBOOKS;
+    const url = `https://www.googleapis.com/books/v1/volumes?q=subject:${encodeURIComponent(
+      genre
+    )}&key=${apiKey}`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      const totalItems = data.totalItems;
+      let randomBook = null;
+
+      if (totalItems > 0) {
+        const maxResults = Math.min(totalItems, 10); // Fetch up to 10 items
+        const startIndex = Math.floor(
+          Math.random() * (totalItems - maxResults)
+        );
+        const urlWithStartIndex = `${url}&startIndex=${startIndex}`;
+
+        // Fetch the books with the startIndex included
+        const responseWithStartIndex = await fetch(urlWithStartIndex);
+        const dataWithStartIndex = await responseWithStartIndex.json();
+
+        // Check if items exist in the response
+        if (dataWithStartIndex.items && dataWithStartIndex.items.length > 0) {
+          // Select a random book from the fetched items
+          const randomIndex = Math.floor(
+            Math.random() * dataWithStartIndex.items.length
+          );
+          randomBook = dataWithStartIndex.items[randomIndex];
+        }
+      }
+
+      return { totalItems, randomBook };
+    } catch (error) {
+      console.error("Error fetching genre data:", error);
+      return { totalItems: 0, randomBook: null };
+    }
+  };
+
+  const cycleGenre = async (genres, numberOfLoops) => {
     let fetchPromises = [];
-    //I need to store all my promises into a list because I am making multiple fetch request
-    //this ensure I can use promise.all to make sure all my promises are ran
 
     for (let i = 0; i < numberOfLoops; i++) {
-      const currentGenre = genres[i % genres.length];
-      const fetchPromise = fetch(GenreURL(currentGenre))
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
+      const currentGenre = genres[i % genres.length].fields.Genre;
+      const fetchPromise = fetchGenreData(currentGenre)
+        .then(({ totalItems, randomBook }) => {
+          if (randomBook) {
+            return randomBook;
           }
-          return response.json();
-        })
-        .then((data) => {
-          return randomPicker(data);
+          return null;
         })
         .catch((error) => console.log("error:", error));
       fetchPromises.push(fetchPromise);
@@ -69,32 +102,17 @@ const RecoList = (props) => {
       .catch((error) => console.error("Error fetching data:", error));
   };
 
-  useEffect(() => {
-    cycleGenre(genreList, 5);
-  }, []);
-
-  useEffect(() => {
-    console.log("Updated recommended state:", recommended);
-  }, [recommended]);
-
   return (
     <div>
       <h2>Recommended</h2>
       <h3>Genre selected for recommendation:</h3>
-      {/* <div className="recoGenre">
-        {genreList.map((item, index) => {
-          return <div className="recoGenreItem">{item}</div>;
-        })}
-      </div> */}
-      <GenreList></GenreList>
+      <GenreList genres={genres} setGenres={setGenres}></GenreList>
       <div className="RecoList">
         {recommended.map((item, index) => {
           return (
             <RecoItem
               key={index}
               recoItem={item}
-              title={item.volumeInfo.title}
-              author={item.volumeInfo.authors}
               setReadList={props.setReadList}
               readList={props.readList}
               toggleRefetch={props.toggleRefetch}
@@ -102,7 +120,7 @@ const RecoList = (props) => {
           );
         })}
       </div>
-      <button onClick={() => cycleGenre(genreList, 5)}>More</button>
+      <button onClick={() => cycleGenre(genres, 5)}>More</button>
     </div>
   );
 };

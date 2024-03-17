@@ -1,8 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Airtable from "airtable";
+import GenreItem from "./GenreItem";
 
-const GenreList = () => {
+const GenreList = (props) => {
   const [genreList, setGenreList] = useState([]);
+  const [selectGenre, setSelectGenre] = useState("");
+
+  const genreSelection = [
+    "Fantasy",
+    "Science Fiction",
+    "Dystopian",
+    "Adventure",
+    "Romance",
+    "Mystery",
+    "Horror",
+    "Thriller",
+    "NonFiction",
+  ];
 
   const base = new Airtable({
     apiKey: import.meta.env.VITE_API_KEY_AIRTABLE,
@@ -12,22 +26,40 @@ const GenreList = () => {
     base("Genre")
       .select()
       .eachPage((records, fetchNextPage) => {
-        setGenreList(records);
+        props.setGenres(records);
         fetchNextPage();
       });
   }, []); // Empty dependency array
 
-  const test = () => {
-    console.log(genreList);
-  };
-
   return (
     <div className="recoGenre">
-      {genreList.map((genre) => (
-        <div key={genre.id} className="recoGenreItem">
+      {props.genres.map((genre) => (
+        <GenreItem
+          key={genre.id}
+          className="recoGenreItem"
+          genre={genre.fields.Genre}
+          id={genre.id}
+        >
           {genre.fields.Genre}
-        </div>
+        </GenreItem>
       ))}
+      <div>
+        <select
+          value={selectGenre}
+          onChange={(e) => {
+            setSelectGenre(e.target.value);
+          }}
+        >
+          {genreSelection.map((item, index) => {
+            return (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            );
+          })}
+        </select>
+        <button>Add</button>
+      </div>
     </div>
   );
 };
