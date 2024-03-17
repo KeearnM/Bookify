@@ -115,6 +115,7 @@ h1 {
 .readDiv {
   height: 650px;
   background-color: #f2ebde;
+  margin-top: 30px;
 }
 
 button {
@@ -205,4 +206,12 @@ button:hover {
 
 .topPart {
   text-align: center;
+}
+
+.readListHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 15px;
 }

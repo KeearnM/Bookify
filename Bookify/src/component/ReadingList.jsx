@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReadItem from "./ReadItem";
 import Airtable from "airtable";
+import { Route, Link } from "react-router-dom";
 
 const ReadingList = (props) => {
   const base = new Airtable({
@@ -22,7 +23,10 @@ const ReadingList = (props) => {
 
   return (
     <div className="readDiv">
-      <h2>Reading List</h2>
+      <div className="readListHeader">
+        <h2>Reading List</h2>
+        <Link to="/fullreadlist"> or click here to access the full list!</Link>
+      </div>
       <div className="readingList">
         <div className="Invis">{props.refetchTrigger ? "true" : "false"}</div>
         {/* {props.readList.map((item, index) => {

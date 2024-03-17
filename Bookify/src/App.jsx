@@ -43,6 +43,9 @@ function App() {
         refetchTrigger={refetchTrigger}
         toggleRefetch={toggleRefetch}
       ></ReadingList>
+      <div className="betweenReadReco">
+        <Link to="/fullreadlist"></Link>
+      </div>
       <RecoList
         setReadList={setReadList}
         readList={readList}
