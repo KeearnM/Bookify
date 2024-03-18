@@ -1,19 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./App.css";
 import Search from "./component/Search";
 import ReadingList from "./component/ReadingList";
 import RecoList from "./component/RecoList";
 import { Route, Link } from "react-router-dom";
+import RefetchContext from "./component/RefetchContext";
 
 function App() {
   const [readList, setReadList] = useState([]);
   const [records, setRecords] = useState([]);
-  const [refetchTrigger, setRefetchTrigger] = useState(false);
-
-  const toggleRefetch = () => {
-    console.log("toggle refetch has ran");
-    setRefetchTrigger((refetchTrigger) => !refetchTrigger);
-  };
+  const { refetchTrigger, setRefetchTrigger, toggleRefetch } =
+    useContext(RefetchContext);
 
   useEffect(() => {
     console.log(refetchTrigger); // This will log the updated state

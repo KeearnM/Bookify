@@ -59,8 +59,13 @@ const RecoItem = (props) => {
 
   return (
     <div className="recoItem">
-      <div className="recoImage">
-        <img src={thumbnail}></img>
+      <div className="recoCard">
+        <div className="recoImage recoCard__front">
+          <img src={thumbnail} alt={title} />
+        </div>
+        <div className="recoDescription recoCard__back">
+          <p>{description}</p>
+        </div>
       </div>
       <div className="recoText">
         {title} written by {author}

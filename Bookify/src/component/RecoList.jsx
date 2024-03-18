@@ -114,18 +114,20 @@ const RecoList = (props) => {
           refetchTrigger={props.refetchTrigger}
         ></GenreList>
       </div>
-      <div className="RecoList">
-        {recommended.map((item, index) => {
-          return (
-            <RecoItem
-              key={index}
-              recoItem={item}
-              setReadList={props.setReadList}
-              readList={props.readList}
-              toggleRefetch={props.toggleRefetch}
-            ></RecoItem>
-          );
-        })}
+      <div className="recoWrapper">
+        <div className="RecoList">
+          {recommended.map((item, index) => {
+            return (
+              <RecoItem
+                key={index}
+                recoItem={item}
+                setReadList={props.setReadList}
+                readList={props.readList}
+                toggleRefetch={props.toggleRefetch}
+              ></RecoItem>
+            );
+          })}
+        </div>
       </div>
       <div className="recoMoreButton">
         <button onClick={() => cycleGenre(genres, 5)}>More</button>

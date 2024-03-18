@@ -56,24 +56,27 @@ const GenreList = (props) => {
         props.setGenres(records);
         fetchNextPage();
       });
-  }, [props.refetchTrigger]); // Empty dependency array
+  }, [props.refetchTrigger]);
 
   return (
     <div className="recoGenre">
-      {props.genres.map((genre) => (
-        <GenreItem
-          key={genre.id}
-          className="recoGenreItem"
-          genre={genre.fields.Genre}
-          id={genre.id}
-          toggleRefetch={props.toggleRefetch}
-        >
-          {genre.fields.Genre}
-        </GenreItem>
-      ))}
-      <div>
+      <div className="recoGenreList">
+        {props.genres.map((genre) => (
+          <GenreItem
+            key={genre.id}
+            className="recoGenreItem"
+            genre={genre.fields.Genre}
+            id={genre.id}
+            toggleRefetch={props.toggleRefetch}
+          >
+            {genre.fields.Genre}
+          </GenreItem>
+        ))}
+      </div>
+      <div className="recoGenreDrop">
         <div className="Invis">{props.refetchTrigger ? "true" : "false"}</div>
         <select
+          className="form-select"
           value={selectGenre}
           onChange={(e) => {
             setSelectGenre(e.target.value);

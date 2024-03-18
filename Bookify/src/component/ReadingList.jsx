@@ -30,20 +30,22 @@ const ReadingList = (props) => {
           or click here to access the full list!
         </Link>
       </div>
-      <div className="readingList">
-        <div className="Invis">{props.refetchTrigger ? "true" : "false"}</div>
-        {props.records.slice(0, 5).map((record) => {
-          return (
-            <ReadItem
-              key={record.id}
-              id={record.id}
-              title={record.fields.Title}
-              author={record.fields.Author}
-              thumbnail={record.fields.Thumbnail}
-              toggleRefetch={props.toggleRefetch}
-            ></ReadItem>
-          );
-        })}
+      <div className="readerWrapper">
+        <div className="readingList">
+          <div className="Invis">{props.refetchTrigger ? "true" : "false"}</div>
+          {props.records.slice(0, 5).map((record) => {
+            return (
+              <ReadItem
+                key={record.id}
+                id={record.id}
+                title={record.fields.Title}
+                author={record.fields.Author}
+                thumbnail={record.fields.Thumbnail}
+                toggleRefetch={props.toggleRefetch}
+              ></ReadItem>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
