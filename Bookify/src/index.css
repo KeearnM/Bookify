@@ -262,8 +262,9 @@ h2 {
 }
 
 .fullReadWrapper {
-  height: 1500px;
+  height: auto;
   background-color: #f2ebde;
+  align-items: center;
 }
 
 .fullReadWrapper,
