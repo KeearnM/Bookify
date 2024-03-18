@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Airtable from "airtable";
 
 const RecoItem = (props) => {
@@ -7,8 +7,12 @@ const RecoItem = (props) => {
   const categories = props.recoItem?.volumeInfo?.categories ?? "N/A";
   const smallThumbnail =
     props.recoItem?.volumeInfo?.imageLinks?.smallThumbnail ?? "N/A";
-  const thumbnail = props.recoItem?.volumeInfo?.imageLinks?.thumbnail ?? "N/A";
+  const thumbnail =
+    props.recoItem?.volumeInfo?.imageLinks?.thumbnail ??
+    "https://placekeanu.com/500/500/g";
   const description = props.recoItem?.volumeInfo?.description ?? "N/A";
+
+  const [loading, setLoading] = useState(false);
 
   const AddToReadList = () => {
     const recoStuff = {};
@@ -21,6 +25,7 @@ const RecoItem = (props) => {
   };
 
   const addToReadTable = () => {
+    setLoading(true);
     const base = new Airtable({
       apiKey: import.meta.env.VITE_API_KEY_AIRTABLE,
     }).base("appSwRUsjekOwOCZ6");
@@ -40,12 +45,14 @@ const RecoItem = (props) => {
         if (err) {
           console.error(err);
           props.toggleRefetch();
+          setLoading(false);
           return;
         }
         records.forEach(function (record) {
           console.log(record.getId());
         });
         props.toggleRefetch();
+        setLoading(false);
       }
     );
   };
@@ -59,6 +66,7 @@ const RecoItem = (props) => {
         {title} written by {author}
       </div>
       <div className="recoButtonDiv">
+        <div className="loading">{loading && <div>Loading...</div>}</div>
         <button onClick={() => addToReadTable()}>Add</button>
       </div>
     </div>

@@ -103,15 +103,17 @@ const RecoList = (props) => {
   };
 
   return (
-    <div>
-      <h2>Recommended</h2>
-      <h3>Genre selected for recommendation:</h3>
-      <GenreList
-        genres={genres}
-        setGenres={setGenres}
-        toggleRefetch={props.toggleRefetch}
-        refetchTrigger={props.refetchTrigger}
-      ></GenreList>
+    <div className="RecoDiv">
+      <div className="recoHeader">
+        <h2>Recommended</h2>
+        <h3>Genre selected for recommendation:</h3>
+        <GenreList
+          genres={genres}
+          setGenres={setGenres}
+          toggleRefetch={props.toggleRefetch}
+          refetchTrigger={props.refetchTrigger}
+        ></GenreList>
+      </div>
       <div className="RecoList">
         {recommended.map((item, index) => {
           return (
@@ -125,7 +127,9 @@ const RecoList = (props) => {
           );
         })}
       </div>
-      <button onClick={() => cycleGenre(genres, 5)}>More</button>
+      <div className="recoMoreButton">
+        <button onClick={() => cycleGenre(genres, 5)}>More</button>
+      </div>
     </div>
   );
 };

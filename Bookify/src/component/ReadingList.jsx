@@ -25,19 +25,13 @@ const ReadingList = (props) => {
     <div className="readDiv">
       <div className="readListHeader">
         <h2>Reading List</h2>
-        <Link to="/fullreadlist"> or click here to access the full list!</Link>
+        <Link to="/fullreadlist" className="readListLink">
+          {" "}
+          or click here to access the full list!
+        </Link>
       </div>
       <div className="readingList">
         <div className="Invis">{props.refetchTrigger ? "true" : "false"}</div>
-        {/* {props.readList.map((item, index) => {
-        return (
-          <ReadItem
-            key={index}
-            title={item.title}
-            author={item.author}
-          ></ReadItem>
-        );
-      })} */}
         {props.records.slice(0, 5).map((record) => {
           return (
             <ReadItem
@@ -50,7 +44,6 @@ const ReadingList = (props) => {
             ></ReadItem>
           );
         })}
-        {/* <button onClick={test}>Test</button> */}
       </div>
     </div>
   );

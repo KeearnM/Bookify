@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Kode+Mono:wght@400..700&display=swap");
+
 html,
 body {
   width: 100%;
@@ -109,7 +111,9 @@ h1 {
 }
 
 .readButtonDiv {
-  text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .readDiv {
@@ -201,7 +205,9 @@ button:hover {
 }
 
 .recoButtonDiv {
-  text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .topPart {
@@ -214,4 +220,25 @@ button:hover {
   align-items: center;
   justify-content: space-between;
   padding: 0px 15px;
+}
+
+.readListLink {
+  color: black;
+}
+
+h2 {
+  font-family: "Archivo Black", sans-serif;
+}
+
+.recoHeader {
+  padding: 0px 15px;
+}
+
+.recoMoreButton {
+  margin-top: 30px;
+  text-align: right;
+}
+
+.loading {
+  margin-left: 10px;
 }

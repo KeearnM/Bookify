@@ -5,19 +5,27 @@ import Airtable from "airtable";
 
 const FullReadList = () => {
   const [fullReadList, setFullReadList] = useState([]);
+  const [refetchFullList, setRefetchFullList] = useState(false);
+
+  const toggleFullFetch = () => {
+    console.log("I am Clicked", refetchFullList);
+    setRefetchFullList((refetchFullList) => !refetchFullList);
+    console.log("I am Set", refetchFullList);
+  };
 
   const base = new Airtable({
     apiKey: import.meta.env.VITE_API_KEY_AIRTABLE,
   }).base("appSwRUsjekOwOCZ6");
 
   useEffect(() => {
+    console.log("test");
     base("Table 1")
       .select()
       .eachPage((records, fetchNextPage) => {
         setFullReadList(records);
         fetchNextPage();
       });
-  }, []);
+  }, [refetchFullList]);
 
   return (
     <div>
@@ -29,7 +37,8 @@ const FullReadList = () => {
         />
       </Link>
       <div className="readingList">
-        {" "}
+        <div className="">{refetchFullList ? "true" : "false"}</div>
+        <button onClick={toggleFullFetch}></button>
         {fullReadList.map((record) => {
           return (
             <ReadItem
@@ -38,6 +47,7 @@ const FullReadList = () => {
               title={record.fields.Title}
               author={record.fields.Author}
               thumbnail={record.fields.Thumbnail}
+              toggleFullFetch={toggleFullFetch}
             ></ReadItem>
           );
         })}

@@ -66,6 +66,7 @@ const GenreList = (props) => {
           className="recoGenreItem"
           genre={genre.fields.Genre}
           id={genre.id}
+          toggleRefetch={props.toggleRefetch}
         >
           {genre.fields.Genre}
         </GenreItem>

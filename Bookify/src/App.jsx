@@ -11,6 +11,7 @@ function App() {
   const [refetchTrigger, setRefetchTrigger] = useState(false);
 
   const toggleRefetch = () => {
+    console.log("toggle refetch has ran");
     setRefetchTrigger((refetchTrigger) => !refetchTrigger);
   };
 
@@ -43,9 +44,6 @@ function App() {
         refetchTrigger={refetchTrigger}
         toggleRefetch={toggleRefetch}
       ></ReadingList>
-      <div className="betweenReadReco">
-        <Link to="/fullreadlist"></Link>
-      </div>
       <RecoList
         setReadList={setReadList}
         readList={readList}
