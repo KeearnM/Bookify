@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Airtable from "airtable";
 
 const RecoItem = (props) => {
-  const title = props.recoItem?.volumeInfo?.title ?? "N/A";
+  const title = props.recoItem?.volumeInfo?.title ?? "No Title";
   const author = props.recoItem?.volumeInfo?.authors ?? "N/A";
   const categories = props.recoItem?.volumeInfo?.categories ?? "N/A";
   const smallThumbnail =
@@ -10,19 +10,11 @@ const RecoItem = (props) => {
   const thumbnail =
     props.recoItem?.volumeInfo?.imageLinks?.thumbnail ??
     "https://placekeanu.com/500/500/g";
-  const description = props.recoItem?.volumeInfo?.description ?? "N/A";
+  const description =
+    props.recoItem?.volumeInfo?.description ??
+    "Cupcake ipsum dolor. Sit amet marshmallow topping cheesecake muffin. Halvah croissant candy canes bonbon candy. Apple pie jelly beans topping carrot cake danish tart cake cheesecake. Muffin danish chocolate soufflé pastry icing bonbon oat cake. Powder cake jujubes oat cake. Lemon drops tootsie roll marshmallow halvah carrot cake.";
 
   const [loading, setLoading] = useState(false);
-
-  const AddToReadList = () => {
-    const recoStuff = {};
-    recoStuff.title = title;
-    recoStuff.author = author;
-    recoStuff.categories = categories;
-    recoStuff.smallThumbnail = smallThumbnail;
-    recoStuff.thumbnail = thumbnail;
-    props.setReadList([...props.readList, recoStuff]);
-  };
 
   const addToReadTable = () => {
     setLoading(true);

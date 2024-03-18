@@ -2,24 +2,13 @@ import React, { useState } from "react";
 import Airtable from "airtable";
 
 const SearchItem = (props) => {
-  const title = props.search.volumeInfo.title;
-  const author = props.search.volumeInfo.authors;
-  const categories = props.search.volumeInfo.categories;
-  const smallThumbnail = props.search.volumeInfo.imageLinks.smallThumbnail;
-  const thumbnail = props.search.volumeInfo.imageLinks.thumbnail;
-
-  const [searchItem, setSearchItem] = useState({});
-
-  const AddToReadList = () => {
-    const searchStuff = {};
-    searchStuff.title = title;
-    searchStuff.author = author.toString();
-    searchStuff.categories = categories;
-    searchStuff.smallThumbnail = smallThumbnail;
-    searchItem.thumbnail = thumbnail;
-    props.setReadList([...props.readList, searchStuff]);
-    props.setSearchResult([]);
-  };
+  const title = props.search?.volumeInfo?.title ?? "Nothing Found";
+  const author = props.search?.volumeInfo?.authors ?? "Nothing Found";
+  const categories = props.search?.volumeInfo?.categories ?? "Nothing Found";
+  const smallThumbnail =
+    props.search?.volumeInfo?.imageLinks?.smallThumbnail ??
+    "https://placekeanu.com/500/500/g";
+  const thumbnail = props.search?.volumeInfo?.imageLinks?.thumbnail ?? "N/A";
 
   const addToReadTable = () => {
     const base = new Airtable({
@@ -46,6 +35,7 @@ const SearchItem = (props) => {
           console.log(record.getId());
         });
         props.setSearchResult([]);
+        props.setSearch([]);
         props.toggleRefetch();
         console.log(props.refetchTrigger);
       }

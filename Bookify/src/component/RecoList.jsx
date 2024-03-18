@@ -6,6 +6,7 @@ const RecoList = (props) => {
   const [genres, setGenres] = useState([]);
   const [recommended, setRecommended] = useState([]);
   const [randomPick, setRandomPick] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const apiKey = import.meta.env.VITE_API_KEY_GOOGLEBOOKS;
   const maxResults = 5;
@@ -27,10 +28,6 @@ const RecoList = (props) => {
       })
       .catch((error) => console.error("Error:", error));
   }
-
-  const testClick = () => {
-    searchByGenre(GenreURL("fantasy"));
-  };
 
   useEffect(() => {
     if (genres.length > 0) {
@@ -79,6 +76,7 @@ const RecoList = (props) => {
   };
 
   const cycleGenre = async (genres, numberOfLoops) => {
+    setLoading(true);
     let fetchPromises = [];
 
     for (let i = 0; i < numberOfLoops; i++) {
@@ -98,8 +96,10 @@ const RecoList = (props) => {
       .then((results) => {
         const flattenedResults = results.flat();
         setRecommended(flattenedResults);
+        setLoading(false);
       })
       .catch((error) => console.error("Error fetching data:", error));
+    setLoading(false);
   };
 
   return (
@@ -107,6 +107,9 @@ const RecoList = (props) => {
       <div className="recoHeader">
         <h2>Recommended</h2>
         <h3>Genre selected for recommendation:</h3>
+        {loading && <div>Gimme a sec, fetching more...</div>}
+
+        <div className="recoGenreList"></div>
         <GenreList
           genres={genres}
           setGenres={setGenres}

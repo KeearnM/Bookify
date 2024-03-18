@@ -24,6 +24,7 @@ const Search = (props) => {
 
   const closeSearch = () => {
     setSearchResult([]);
+    setSearch([]);
   };
 
   useEffect(() => {}, [searchResult]);
@@ -52,6 +53,7 @@ const Search = (props) => {
               setSearchResult={setSearchResult}
               toggleRefetch={props.toggleRefetch}
               refetchTrigger={props.refetchTrigger}
+              setSearch={setSearch}
             ></SearchItem>
           );
         })}

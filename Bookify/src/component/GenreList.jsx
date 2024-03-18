@@ -3,7 +3,6 @@ import Airtable from "airtable";
 import GenreItem from "./GenreItem";
 
 const GenreList = (props) => {
-  const [genreList, setGenreList] = useState([]);
   const [selectGenre, setSelectGenre] = useState("");
 
   const genreSelection = [
