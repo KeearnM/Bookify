@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import FullReadList from "./pages/FullReadList.jsx";
 import RefetchLayout from "./component/RefetchLayout.jsx";
-import Index from "./pages/index.jsx";
+import Index from "./pages/Index.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
