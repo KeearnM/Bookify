@@ -3,9 +3,6 @@
 
 A book app that recommends me books based on a list of genres I have selected. The app also allows me to either add books from the recommended section into a reading list or directly search books that the user wants to be added into a reading list
 
-[Link to production website](https://bookify-rdxncvdnq-keearns-projects.vercel.app)
-
-
 ## Screenshots
 
 ### Full Page View
@@ -39,26 +36,38 @@ This is how my app works and how various components are nested
 
 ![AppChartRead](https://github.com/KeearnM/Bookify/assets/75174570/d829dce5-988c-4869-b4a2-b0a5bbb952dc)
 
-## Routes
+### Routes
 
 The current webpage has two routes, the main page and the full reading list, to return to the main page the user just need to click on the icon
 
+### Airtable usage
 
-### Getting started
+Currently using the Airtable for both the read list and the genre list under recommendations. Both of these utilise create,read, and delete of CRUD. 
+For the book read list the app is able to delete a book and create a new book with information from either search or recommendations from the read list table in Airtable. The app is also reading from airtable to display the books in the readlist. The same goes for the genre list as well as it is utilising the same concepts
+
+### Lifting state
+
+There are two lifting states that are currently being used for the app, refetchContext and Genre in the recommendation section. RefetchContext and the function editing it toggleRefetch is proped down to every children that has a button that updates the read list (RecoItem and ReadItem), so that the button can use the proped down function to trigger a refetch on the reading list after they are down adding new entry to it. Genre in recommendation is proped down to GenreList and Genre where they will edit it before RecoList - The Parent, will use the GenreList to fetch a series of new recommendation
+
+## Getting started
+
+### Link to production website
+[Link to production website](https://bookify-rdxncvdnq-keearns-projects.vercel.app)
+- There is currently a bug in production when refreshing the website after removing a book in the full read list, currently working on fixing this. Removing in the main page from the read list should still be working 
 
 Trello board:
 
 The features I have envisioned when planning the app was the following:
 
-## Search
+### Search
 
 I wanted a search feature that sends a simple query to Google books API and return a set number 
 
-## Reading List
+### Reading List
 
 I want a reading list that is displayed that shows what are the newest books the users have added
 
-## Recommended Books
+### Recommended Books
 
 A set of recommended books that is returned from Google API that is based on a genre list that the user can edit
 
