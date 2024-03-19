@@ -3,6 +3,8 @@
 
 A book app that recommends me books based on a list of genres I have selected. The app also allows me to either add books from the recommended section into a reading list or directly search books that the user wants to be added into a reading list
 
+[Preview](https://bookify-j6f71bzx7-keearns-projects.vercel.app)
+
 ## Screenshots
 
 ### Full Page View
