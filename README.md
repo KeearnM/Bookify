@@ -8,6 +8,24 @@ A book app that recommends me books based on a list of genres I have selected. T
 
 ## Screenshots
 
+### Full Page View
+
+![Bookify Full Page](https://github.com/KeearnM/Bookify/assets/75174570/b4b4217b-eaa5-49a9-967b-2d7a7f47b4ee)
+
+### Reading List
+
+<img width="1413" alt="Screenshot 2024-03-19 at 15 45 12" src="https://github.com/KeearnM/Bookify/assets/75174570/b11b12a8-49ce-4c38-b248-3493aeebcd3a">
+
+
+### Recommendation with summary on hover
+
+<img width="1440" alt="Screenshot 2024-03-19 at 15 41 01" src="https://github.com/KeearnM/Bookify/assets/75174570/1653a81e-c1bc-4e9b-8d16-6e19e0604ae1">
+
+
+### Full Reading List 
+
+![Screen Shot 2024-03-19 at 15 46 49](https://github.com/KeearnM/Bookify/assets/75174570/b69e7348-4a74-48bc-ae32-85f2f46209ab)
+
 
 ## Technologies Used
 
