@@ -55,24 +55,26 @@ There are two lifting states that are currently being used for the app, refetchC
 [Link to production website](https://bookify-rdxncvdnq-keearns-projects.vercel.app)
 - There is currently a bug in production when refreshing the website after removing a book in the full read list, currently working on fixing this. Removing in the main page from the read list should still be working 
 
-Trello board:
+### Trello board:
+
+[Trello Board](https://trello.com/invite/b/MbKI0tXP/ATTI6f8d5590d20b43fa345b5b85b2db0dd95DBC03C2/bookify)
 
 The features I have envisioned when planning the app was the following:
 
-### Search
+#### Search
 
 I wanted a search feature that sends a simple query to Google books API and return a set number 
 
-### Reading List
+#### Reading List
 
 I want a reading list that is displayed that shows what are the newest books the users have added
 
-### Recommended Books
+#### Recommended Books
 
 A set of recommended books that is returned from Google API that is based on a genre list that the user can edit
 
 
-### Future Enhancement
+## Future Enhancement
 
 I want another set of recommended books that is based on the current user reading list 
 
