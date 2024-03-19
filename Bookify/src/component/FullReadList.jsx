@@ -54,7 +54,7 @@ const FullReadList = () => {
             border="0"
           />
         </Link>
-        <div>Your Entire Read List</div>
+        <div className="subFullReadHeader">Your Entire Read List</div>
       </div>
       <div className="fullReadWrapper">
         <div className="fullReadingList">

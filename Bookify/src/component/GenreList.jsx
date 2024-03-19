@@ -79,7 +79,6 @@ const GenreList = (props) => {
           value={selectGenre}
           onChange={(e) => {
             setSelectGenre(e.target.value);
-            console.log(selectGenre);
           }}
         >
           {genreSelection.map((item, index) => {

@@ -353,3 +353,11 @@ select {
 .genreRemoveButton:hover {
   background-color: #fbf7f5;
 }
+
+.subReadHeader {
+  margin-left: 15px;
+}
+
+.subFullReadHeader {
+  margin-bottom: 10px;
+}

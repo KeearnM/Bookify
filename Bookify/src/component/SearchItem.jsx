@@ -37,7 +37,6 @@ const SearchItem = (props) => {
         props.setSearchResult([]);
         props.setSearch([]);
         props.toggleRefetch();
-        console.log(props.refetchTrigger);
       }
     );
   };

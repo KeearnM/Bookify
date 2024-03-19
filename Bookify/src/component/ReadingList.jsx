@@ -17,10 +17,6 @@ const ReadingList = (props) => {
       });
   }, [props.refetchTrigger]);
 
-  const test = () => {
-    console.log(props.records);
-  };
-
   return (
     <div className="readDiv">
       <div className="readListHeader">
@@ -29,6 +25,9 @@ const ReadingList = (props) => {
           {" "}
           or click here to access the full list!
         </Link>
+      </div>
+      <div className="subReadHeader">
+        Here's five of your books from the reading list
       </div>
       <div className="readerWrapper">
         <div className="readingList">

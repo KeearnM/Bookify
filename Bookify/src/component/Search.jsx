@@ -36,7 +36,6 @@ const Search = (props) => {
         placeholder="Enter Search Query Here"
         value={search}
         onChange={(e) => {
-          console.log(e.target.value);
           setSearch(e.target.value);
         }}
       ></input>

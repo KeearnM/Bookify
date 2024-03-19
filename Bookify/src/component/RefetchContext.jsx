@@ -6,7 +6,6 @@ export const RefetchProvider = ({ children }) => {
   const [refetchTrigger, setRefetchTrigger] = useState(false);
 
   const toggleRefetch = () => {
-    console.log("toggle refetch has ran");
     setRefetchTrigger((prevRefetchTrigger) => !prevRefetchTrigger);
   };
 

@@ -5,29 +5,10 @@ import GenreList from "./GenreList";
 const RecoList = (props) => {
   const [genres, setGenres] = useState([]);
   const [recommended, setRecommended] = useState([]);
-  const [randomPick, setRandomPick] = useState("");
   const [loading, setLoading] = useState(false);
 
   const apiKey = import.meta.env.VITE_API_KEY_GOOGLEBOOKS;
   const maxResults = 5;
-
-  const randomPicker = (books) => {
-    const bookItem = books.items;
-    const randomOutput = Math.floor(Math.random() * books.items.length);
-    console.log("bookItem: ", bookItem);
-    console.log("randomeOutput: ", randomOutput);
-    return bookItem[randomOutput];
-  };
-
-  function searchByGenre(url) {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setRandomPick(randomPicker(data));
-        console.log(randomPick.volumeInfo.title);
-      })
-      .catch((error) => console.error("Error:", error));
-  }
 
   useEffect(() => {
     if (genres.length > 0) {
