@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import ReadItem from "./ReadItem";
 import Airtable from "airtable";
 import RefetchContext from "./RefetchContext";
-import styles from "./fullread.module.css";
 
 const FullReadList = () => {
   const [fullReadList, setFullReadList] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // Step 1: Add loading state
   const { refetchTrigger, setRefetchTrigger, toggleRefetch } =
     useContext(RefetchContext);
 
@@ -16,37 +14,19 @@ const FullReadList = () => {
   }).base("appSwRUsjekOwOCZ6");
 
   useEffect(() => {
-    let ignore = false; //when ignore is true stop, prevents double data
-    setIsLoading(true);
+    console.log("test");
     base("Table 1")
       .select()
-      .eachPage(
-        (records, fetchNextPage) => {
-          if (ignore) return;
-          setFullReadList((prevRecords) => [...prevRecords, ...records]);
-          if (records.length > 0) {
-            fetchNextPage();
-          } else {
-            setIsLoading(false);
-          }
-        },
-        (error) => {
-          if (error) {
-            console.error(error);
-          }
-          if (!ignore) {
-            setIsLoading(false);
-          }
-        }
-      );
-    return () => {
-      ignore = true;
-    };
+      .eachPage((records, fetchNextPage) => {
+        setFullReadList(records);
+        fetchNextPage();
+      });
   }, [refetchTrigger]);
 
   return (
-    <div className="fullRead">
+    <div>
       <div className="fullReadHeader">
+        {" "}
         <Link to="/" className="logoImage">
           <img
             src="https://i.ibb.co/tMw6Btg/Screenshot-2024-03-17-at-22-13-19.png"
@@ -54,22 +34,13 @@ const FullReadList = () => {
             border="0"
           />
         </Link>
-        <div className="subFullReadHeader">Your Entire Read List</div>
+        <div>Your Entire Read List</div>
       </div>
       <div className="fullReadWrapper">
         <div className="fullReadingList">
-          {isLoading ? (
-            <div>
-              <a>
-                <img
-                  src="https://s9.gifyu.com/images/SUoFD.gif"
-                  alt="output onlinegiftools"
-                  border="0"
-                />
-              </a>
-            </div> // Step 4: Display loading indicator
-          ) : (
-            fullReadList.map((record) => (
+          <div className="Invis">{refetchTrigger ? "true" : "false"}</div>
+          {fullReadList.map((record) => {
+            return (
               <ReadItem
                 key={record.id}
                 id={record.id}
@@ -77,9 +48,9 @@ const FullReadList = () => {
                 author={record.fields.Author}
                 thumbnail={record.fields.Thumbnail}
                 toggleRefetch={toggleRefetch}
-              />
-            ))
-          )}
+              ></ReadItem>
+            );
+          })}
         </div>
       </div>
     </div>
