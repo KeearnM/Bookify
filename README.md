@@ -39,27 +39,31 @@ This is how my app works and how various components are nested
 
 ![AppChartRead](https://github.com/KeearnM/Bookify/assets/75174570/d829dce5-988c-4869-b4a2-b0a5bbb952dc)
 
+## Routes
 
-## Getting started
+The current webpage has two routes, the main page and the full reading list, to return to the main page the user just need to click on the icon
+
+
+### Getting started
 
 Trello board:
 
 The features I have envisioned when planning the app was the following:
 
-### Search
+## Search
 
 I wanted a search feature that sends a simple query to Google books API and return a set number 
 
-### Reading List
+## Reading List
 
 I want a reading list that is displayed that shows what are the newest books the users have added
 
-### Recommended Books
+## Recommended Books
 
 A set of recommended books that is returned from Google API that is based on a genre list that the user can edit
 
 
-## Future Enhancement
+### Future Enhancement
 
 I want another set of recommended books that is based on the current user reading list 
 
