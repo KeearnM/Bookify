@@ -52,8 +52,7 @@ There are two lifting states that are currently being used for the app, refetchC
 ## Getting started
 
 ### Link to production website
-[Link to production website](https://bookify-rdxncvdnq-keearns-projects.vercel.app)
-- There is currently a bug in production when refreshing the website after removing a book in the full read list, currently working on fixing this. Removing in the main page from the read list should still be working 
+[Link to production website](https://bookify-j6f71bzx7-keearns-projects.vercel.app)
 
 ### Trello board:
 
