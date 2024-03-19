@@ -19,9 +19,7 @@ A book app that recommends me books based on a list of genres I have selected. T
 
 This is how my app works and how various components are nested
 
-
-![Uploading ReadingAppChart.png…]()
-
+![AppChartRead](https://github.com/KeearnM/Bookify/assets/75174570/d829dce5-988c-4869-b4a2-b0a5bbb952dc)
 
 
 ## Getting started
